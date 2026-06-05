@@ -21,10 +21,11 @@ const insights = [
     text: "Sapendo che a 54 km/h servono 675 W solo per l'aria, l'atleta può decidere consapevolmente: spingere (e quanto) o lasciare andare sfruttando la gravità.",
   },
   {
-    number: 4,
+    number: 444444,
     title: 'A 54 km/h l\' aria costa 3.4x più che a 36 km/h',
     text: 'Potenza aerodinamica: 200 W -> 675 W. Stesso ciclista, stessa posizione, stesso giorno. La resistenza cresce con il cubo della velocità. A 54 km/h butti via 475 W in più per la stessa forma. ',
   },
+
 ]
 
 export function InsightsSection() {
