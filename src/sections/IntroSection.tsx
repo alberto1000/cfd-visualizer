@@ -75,7 +75,7 @@ export function IntroSection() {
             <VideoReveal
               src="/videos/3d-model.mp4"
               ariaLabel="Visualizzazione del dominio di calcolo"
-              aspectRatio="3/4"
+              aspectRatio="5/4"
               className="border border-cfd-cyan/20 shadow-glow"
             />
           </div>
