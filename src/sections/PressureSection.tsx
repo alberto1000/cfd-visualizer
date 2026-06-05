@@ -1,52 +1,48 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { VideoReveal } from '@/components/VideoReveal'
+import { Bike, Helmet, Gauge, ArrowRight } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const zones = [
-  { color: '#DC2626', label: 'Frontale', parts: 'casco, petto', desc: 'Pressione massima — 40% resistenza' },
-  { color: '#EAB308', label: 'Laterale', parts: 'spalle, braccia', desc: 'Pressione media — 30% resistenza' },
-  { color: '#1E3A8A', label: 'Posteriore', parts: 'schiena, glutei', desc: 'Zona di scia — 30% resistenza' },
-]
-
-const SPEEDS = [
-  { label: '36 km/h', src: '/videos/pressure-field_54kmh.mp4' },
-  { label: '54 km/h', src: '/videos/pressure-field_54kmh.mp4' },
+const testScenarios = [
+  {
+    icon: Bike,
+    title: 'Confronto tra bici',
+    description: 'Telaio da corsa vs cronometro, bici attuale vs nuovo modello. Scopri quanto realmente guadagni prima di acquistare.',
+    video: '/videos/cyclist-54kmh.mp4',
+    label: 'Flusso d\'aria',
+  },
+  {
+    icon: Helmet,
+    title: 'Casco e posizione',
+    description: 'Casco aperto vs integrale, gomiti alti vs bassi, manubrio standard vs aerobar. Ogni centimetro conta.',
+    video: '/videos/pressure-field_54kmh.mp4',
+    label: 'Campo di pressione',
+  },
+  {
+    icon: Gauge,
+    title: 'Velocità e condizioni',
+    description: 'Simulazione a diverse velocità, con o senza vento laterale, in salita o in discesa. Pianifica la tua strategia.',
+    video: '/videos/3d-model.mp4',
+    label: 'Dominio di calcolo',
+  },
 ]
 
 export function PressureSection() {
   const sectionRef = useRef<HTMLElement>(null)
-  const leftRef = useRef<HTMLDivElement>(null)
-  const rightRef = useRef<HTMLDivElement>(null)
-  const zonesRef = useRef<(HTMLDivElement | null)[]>([])
-  const [activeSpeed, setActiveSpeed] = useState(0)
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(leftRef.current, {
-        clipPath: 'inset(0 0 0 100%)',
-        duration: 1,
-        ease: 'power3.inOut',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
-      })
-
-      gsap.from(rightRef.current, {
-        opacity: 0,
-        y: 40,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
-      })
-
-      zonesRef.current.forEach((zone, i) => {
-        if (!zone) return
-        gsap.from(zone, {
+      cardsRef.current.forEach((card, i) => {
+        if (!card) return
+        gsap.from(card, {
           opacity: 0,
-          x: -20,
-          duration: 0.6,
-          delay: 0.3 + i * 0.15,
+          y: 40,
+          duration: 0.8,
+          delay: i * 0.2,
           ease: 'power3.out',
           scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
         })
@@ -62,69 +58,57 @@ export function PressureSection() {
       ref={sectionRef}
       className="py-[clamp(5rem,10vh,8rem)] bg-bg-secondary"
     >
-      <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Video + Toggle */}
-        <div ref={leftRef} className="flex flex-col gap-4">
+      <div className="max-w-[1200px] mx-auto px-6">
+        <p className="text-cfd-cyan text-xs font-medium tracking-[0.25em] uppercase mb-4 text-center">
+          Cosa puoi testare
+        </p>
+        <h2 className="font-heading text-[clamp(2rem,4vw,3.5rem)] font-bold text-txt-primary leading-tight mb-4 text-center">
+          Ogni configurazione, ogni dubbio
+        </h2>
+        <p className="text-txt-secondary text-center max-w-[600px] mx-auto mb-12 leading-relaxed">
+          Tu scegli cosa confrontare. Noi simuliamo e ti diamo i numeri. Ecco alcuni esempi di cosa i nostri clienti hanno già testato
+        </p>
 
-          {/* Toggle velocità */}
-          <div className="flex gap-2 self-start">
-            {SPEEDS.map((speed, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveSpeed(i)}
-                className={`px-4 py-1.5 rounded-full text-xs font-medium tracking-widest uppercase transition-all duration-300 border ${
-                  activeSpeed === i
-                    ? 'bg-cfd-red text-white border-cfd-red shadow-[0_0_12px_#DC262640]'
-                    : 'bg-transparent text-txt-secondary border-white/10 hover:border-cfd-red/40 hover:text-txt-primary'
-                }`}
-              >
-                {speed.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Video — key forzato per rimontare il componente al cambio sorgente */}
-          <VideoReveal
-            key={SPEEDS[activeSpeed].src}
-            src={SPEEDS[activeSpeed].src}
-            ariaLabel={`Campo di pressione attorno al ciclista a ${SPEEDS[activeSpeed].label}`}
-            className="border border-cfd-red/10 hover:border-cfd-red/30 transition-all duration-500"
-          />
-        </div>
-
-        {/* Text — invariato */}
-        <div ref={rightRef}>
-          <p className="text-cfd-cyan text-xs font-medium tracking-[0.25em] uppercase mb-4">
-            ANALISI DEL CAMPO DI PRESSIONE
-          </p>
-          <h2 className="font-heading text-[clamp(2rem,4vw,3.5rem)] font-bold text-txt-primary leading-tight mb-6">
-            Dove l'aria colpisce di più
-          </h2>
-          <p className="text-txt-secondary leading-relaxed mb-8">
-            Le mappe di pressione mostrano che casco e spalle da soli coprono circa il 40% della resistenza totale.
-            Queste zone rosse sono dove l'aria si ferma contro il corpo, creando la maggior parte del rallentamento.
-          </p>
-
-          <div className="space-y-4">
-            {zones.map((zone, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {testScenarios.map((scenario, i) => {
+            const Icon = scenario.icon
+            return (
               <div
                 key={i}
-                ref={(el) => { zonesRef.current[i] = el }}
-                className="flex items-start gap-4"
+                ref={(el) => { cardsRef.current[i] = el }}
+                className="group bg-bg-tertiary rounded-2xl border border-white/[0.06] hover:border-cfd-cyan/20 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
               >
-                <span
-                  className="mt-1 w-4 h-4 rounded-full flex-shrink-0"
-                  style={{ backgroundColor: zone.color, boxShadow: `0 0 12px ${zone.color}40` }}
-                />
-                <div>
-                  <p className="text-txt-primary font-medium">
-                    {zone.label} <span className="text-txt-tertiary font-normal">({zone.parts})</span>
+                {/* Video */}
+                <div className="relative">
+                  <VideoReveal
+                    src={scenario.video}
+                    ariaLabel={`Esempio di simulazione: ${scenario.title}`}
+                    className="border-0 rounded-none"
+                  />
+                  <div className="absolute top-3 left-3 px-3 py-1 bg-bg-primary/80 backdrop-blur-sm rounded-full text-xs text-cfd-cyan font-medium tracking-wide">
+                    {scenario.label}
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-cfd-cyan/10 mb-4 group-hover:bg-cfd-cyan/20 transition-colors">
+                    <Icon className="w-5 h-5 text-cfd-cyan" />
+                  </div>
+                  <h3 className="font-heading text-lg font-semibold text-txt-primary mb-2">
+                    {scenario.title}
+                  </h3>
+                  <p className="text-txt-secondary text-sm leading-relaxed mb-4">
+                    {scenario.description}
                   </p>
-                  <p className="text-txt-secondary text-sm">{zone.desc}</p>
+                  <div className="flex items-center gap-2 text-cfd-cyan text-xs font-medium tracking-wide opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span>Disponibile nel report</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
+            )
+          })}
         </div>
       </div>
     </section>

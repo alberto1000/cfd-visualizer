@@ -8,24 +8,23 @@ const insights = [
   {
     number: 1,
     title: 'Dove perdo più watt?',
-    text: 'Le mappe di pressione mostrano che casco e spalle da soli coprono circa il 40% della resistenza totale. Un casco più aerodinamico può valere fino a 20 W a 54 km/h, più di molti upgrade costosi.',
+    text: 'Le mappe di pressione mostrano che casco e spalle da soli coprono tipicamente il 35-45% della resistenza totale. Un casco più aerodinamico o una posizione più compatta possono valere fino a 15-25 W a velocità di gara — più di molti upgrade costosi.',
   },
   {
     number: 2,
     title: 'Vale la pena abbassare i gomiti?',
-    text: 'Sì: abbassarli di 2–3 cm riduce la superficie frontale di circa 0.02 m², con un risparmio stimato di 10–15 W a velocità di gara. Un cambio gratis che vale decine di euro di componenti.',
+    text: 'Sì: abbassarli di 2–3 cm riduce la superficie frontale di circa 0.02 m², con un risparmio stimato di 10–15 W a velocità di gara. Un cambio gratuito che vale decine di euro di componenti. La simulazione ti dice esattamente quanto risparmieresti nella tua posizione specifica.',
   },
   {
     number: 3,
     title: 'Come gestisco la potenza in discesa?',
-    text: "Sapendo che a 54 km/h servono 675 W solo per l'aria, l'atleta può decidere consapevolmente: spingere (e quanto) o lasciare andare sfruttando la gravità.",
+    text: "Sapendo esattamente quanti watt servono per l'aria alla tua velocità massima, puoi decidere consapevolmente: spingere (e quanto) o lasciare andare sfruttando la gravità. Nessuna sensazione, solo numeri.",
   },
   {
-    number: 444444,
-    title: 'A 54 km/h l\' aria costa 3.4x più che a 36 km/h',
-    text: 'Potenza aerodinamica: 200 W -> 675 W. Stesso ciclista, stessa posizione, stesso giorno. La resistenza cresce con il cubo della velocità. A 54 km/h butti via 475 W in più per la stessa forma. ',
+    number: 4,
+    title: 'La resistenza cresce con il cubo della velocità',
+    text: 'Aumentare la velocità del 50% non significa aumentare la resistenza del 50%: significa triplicarla (o peggio). Questo è il motivo per cui l'aerodinamica diventa cruciale sopra i 40 km/h. La simulazione ti mostra esattamente la curva per il tuo corpo e la tua bici.',
   },
-
 ]
 
 export function InsightsSection() {

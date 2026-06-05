@@ -42,7 +42,7 @@ export function ContactSection() {
           Il tuo profilo aerodinamico è unico. Riduci i consumi e guadagna minuti ottimizzandolo:
         </h2>
         <p className="text-lg text-txt-secondary leading-relaxed mb-10">
-          scansioniamo, simuliamo e ti diciamo esattamente come ridurre l'attrito, il tuo nemico numero uno.
+          Scansioniamo la tua posizione, simuliamo la tua configurazione e ti diciamo esattamente come ridurre il drag. Wind tunnel digitale da 400€ invece di 3000€ — stessa precisione, stessi numeri.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-6 mb-10">

@@ -63,14 +63,14 @@ export function HeroSection() {
           ref={titleRef}
           className="opacity-0 translate-y-8 font-heading text-[clamp(2.5rem,6vw,5rem)] font-bold text-txt-primary leading-[0.95] mb-6"
         >
-          Quanta energia spendi contro l'aria in bici?
+          La tua galleria del vento digitale
         </h1>
 
         <p
           ref={subtitleRef}
           className="opacity-0 translate-y-8 text-lg text-txt-secondary max-w-[700px] mx-auto mb-10 leading-relaxed"
         >
-          Abbiamo simulato al computer il tuo corpo in movimento per dirtelo con precisione
+          Simuliamo il tuo profilo aerodinamico in condizioni controllate: stessa precisione di una wind tunnel reale, a una frazione del costo
         </p>
 
         <div ref={ctaRef} className="opacity-0 translate-y-8 flex flex-wrap items-center justify-center gap-4 mb-12">
@@ -78,7 +78,7 @@ export function HeroSection() {
             href="#scenarios"
             className="px-8 py-3.5 bg-cfd-cyan text-bg-primary font-medium rounded-full hover:shadow-glow-strong transition-all duration-300 text-sm tracking-wide"
           >
-            Esplora i Risultati
+            Vedi un Esempio di Report
           </a>
           <a
             href="#method"
@@ -89,11 +89,11 @@ export function HeroSection() {
         </div>
 
         <div ref={statsRef} className="opacity-0 translate-y-8 flex items-center justify-center gap-3 text-txt-tertiary text-xs tracking-widest uppercase">
-          <span>2 velocità simulate</span>
+          <span>Validato in wind tunnel</span>
           <span>·</span>
-          <span>30M+ celle</span>
+          <span>Errore &lt; 5%</span>
           <span>·</span>
-          <span>0.5% tolleranza</span>
+          <span>Da 400€</span>
         </div>
       </div>
 
