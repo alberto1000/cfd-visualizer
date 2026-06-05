@@ -7,17 +7,17 @@ gsap.registerPlugin(ScrollTrigger)
 const insights = [
   {
     number: 1,
-    title: 'Dove perdo più watt?',
+    title: 'AAAAAAAAADove perdo più watt?',
     text: 'Le mappe di pressione mostrano che casco e spalle da soli coprono circa il 40% della resistenza totale. Un casco più aerodinamico può valere fino a 20 W a 54 km/h, più di molti upgrade costosi.',
   },
   {
     number: 2,
-    title: 'Vale la pena abbassare i gomiti?',
+    title: 'AAAAAAAAVale la pena abbassare i gomiti?',
     text: 'Sì: abbassarli di 2–3 cm riduce la superficie frontale di circa 0.02 m², con un risparmio stimato di 10–15 W a velocità di gara. Un cambio gratis che vale decine di euro di componenti.',
   },
   {
     number: 3,
-    title: 'Come gestisco la potenza in discesa?',
+    title: 'AAAAAAAAAACome gestisco la potenza in discesa?',
     text: "Sapendo che a 54 km/h servono 675 W solo per l'aria, l'atleta può decidere consapevolmente: spingere (e quanto) o lasciare andare sfruttando la gravità.",
   },
   {
