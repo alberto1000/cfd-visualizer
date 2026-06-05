@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { VideoReveal } from '@/components/VideoReveal'
-import { Bike, Helmet, Gauge, ArrowRight } from 'lucide-react'
+import { Bike, Shield, Gauge, ArrowRight } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,10 +12,10 @@ const testScenarios = [
     title: 'Confronto tra bici',
     description: 'Telaio da corsa vs cronometro, bici attuale vs nuovo modello. Scopri quanto realmente guadagni prima di acquistare.',
     video: '/videos/cyclist-54kmh.mp4',
-    label: 'Flusso d\'aria',
+    label: "Flusso d'aria",
   },
   {
-    icon: Helmet,
+    icon: Shield,
     title: 'Casco e posizione',
     description: 'Casco aperto vs integrale, gomiti alti vs bassi, manubrio standard vs aerobar. Ogni centimetro conta.',
     video: '/videos/pressure-field_54kmh.mp4',
