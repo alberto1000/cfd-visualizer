@@ -13,7 +13,7 @@ const insights = [
   {
     number: 2,
     title: 'Vale la pena abbassare i gomiti?',
-    text: 'Sì: abbassarli di 2–3 cm riduce la superficie frontale di circa 0.02 m², con un risparmio stimato di 10–15 W a velocità di gara. Un cambio gratuito che vale decine di euro di componenti. La simulazione ti dice esattamente quanto risparmieresti nella tua posizione specifica.',
+    text: 'Sì: abbassarli di 2–3 cm riduce la superficie frontale di circa 0.02 m2, con un risparmio stimato di 10–15 W a velocità di gara. Un cambio gratuito che vale decine di euro di componenti. La simulazione ti dice esattamente quanto risparmieresti nella tua posizione specifica.',
   },
   {
     number: 3,
@@ -23,7 +23,7 @@ const insights = [
   {
     number: 4,
     title: 'La resistenza cresce con il cubo della velocità',
-    text: 'Aumentare la velocità del 50% non significa aumentare la resistenza del 50%: significa triplicarla (o peggio). Questo è il motivo per cui l'aerodinamica diventa cruciale sopra i 40 km/h. La simulazione ti mostra esattamente la curva per il tuo corpo e la tua bici.',
+    text: 'Aumentare la velocità del 50% non significa aumentare la resistenza del 50%: significa triplicarla (o peggio). Questo è il motivo per cui l\'aerodinamica diventa cruciale sopra i 40 km/h. La simulazione ti mostra esattamente la curva per il tuo corpo e la tua bici.',
   },
 ]
 
