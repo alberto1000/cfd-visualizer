@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 type Tab = 'flow' | 'pressure' | 'compare'
 
 const tabs = [
-  { id: 'flow' as Tab, label: 'Flusso d\'Aria' },
+  { id: 'flow' as Tab, label: "Flusso d'Aria" },
   { id: 'pressure' as Tab, label: 'Campo di Pressione' },
   { id: 'compare' as Tab, label: 'Confronto Configurazioni' },
 ]
@@ -269,4 +269,89 @@ function ScenarioCompare() {
               <td className="px-6 py-4 text-center text-txt-secondary text-sm">La tua configurazione attuale</td>
               <td className="px-6 py-4 text-center text-txt-secondary text-sm">Nuova bici / casco / posizione</td>
             </tr>
-            <tr className="border-t border-white
+            <tr className="border-t border-white/[0.06] bg-bg-secondary/50">
+              <td className="px-6 py-4 text-txt-primary text-sm">Resistenza aerodinamica</td>
+              <td className="px-6 py-4 text-center font-mono text-cfd-cyan font-semibold">X N</td>
+              <td className="px-6 py-4 text-center font-mono text-cfd-orange font-semibold">Y N</td>
+            </tr>
+            <tr className="border-t border-white/[0.06]">
+              <td className="px-6 py-4 text-txt-primary text-sm">Watt spesi per l'aria</td>
+              <td className="px-6 py-4 text-center font-mono text-cfd-cyan font-semibold">X W</td>
+              <td className="px-6 py-4 text-center font-mono text-cfd-orange font-semibold">Y W</td>
+            </tr>
+            <tr className="border-t border-white/[0.06] bg-bg-secondary/50">
+              <td className="px-6 py-4 text-txt-primary text-sm">CDA (ingombro aerodinamico)</td>
+              <td className="px-6 py-4 text-center font-mono text-cfd-cyan font-semibold">X m²</td>
+              <td className="px-6 py-4 text-center font-mono text-cfd-orange font-semibold">Y m²</td>
+            </tr>
+            <tr className="border-t border-white/[0.06]">
+              <td className="px-6 py-4 text-txt-primary text-sm">Risparmio stimato</td>
+              <td className="px-6 py-4 text-center text-txt-tertiary text-sm">—</td>
+              <td className="px-6 py-4 text-center font-mono text-cfd-green font-semibold">Δ W / Δ N</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div className="p-6 bg-cfd-red/10 border border-cfd-red/20 rounded-xl">
+        <p className="text-txt-secondary leading-relaxed text-center">
+          <strong className="text-cfd-red">Il confronto che fa la differenza:</strong> prima di spendere 3000€ per una nuova bici o un nuovo casco, scopri quanto realmente guadagneresti. Confrontiamo le tue configurazioni con la stessa precisione di una wind tunnel reale — a un decimo del costo.
+        </p>
+      </div>
+
+      <p className="text-lg text-txt-secondary max-w-[700px] mx-auto text-center leading-relaxed">
+        Che tu voglia confrontare due bici diverse, due caschi o due posizioni del corpo, il report ti mostra numeri precisi e confrontabili. Nessuna supposizione, solo fisica.
+      </p>
+    </div>
+  )
+}
+
+/* ==================== SHARED COMPONENTS ==================== */
+function MetricRow({
+  label,
+  value,
+  description,
+}: {
+  label: string
+  value: string
+  description: string
+}) {
+  return (
+    <div className="flex items-center justify-between py-3 border-b border-white/[0.06]">
+      <span className="text-txt-secondary text-sm">{label}</span>
+      <div className="text-right">
+        <span className="font-mono text-lg font-semibold text-txt-primary">
+          {value}
+        </span>
+        <span className="block text-txt-tertiary text-xs">{description}</span>
+      </div>
+    </div>
+  )
+}
+
+function PressureZone({
+  color,
+  label,
+  parts,
+  desc,
+}: {
+  color: string
+  label: string
+  parts: string
+  desc: string
+}) {
+  return (
+    <div className="flex items-start gap-4">
+      <span
+        className="mt-1 w-4 h-4 rounded-full flex-shrink-0"
+        style={{ backgroundColor: color, boxShadow: `0 0 12px ${color}40` }}
+      />
+      <div>
+        <p className="text-txt-primary font-medium">
+          {label} <span className="text-txt-tertiary font-normal">({parts})</span>
+        </p>
+        <p className="text-txt-secondary text-sm">{desc}</p>
+      </div>
+    </div>
+  )
+}
