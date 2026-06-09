@@ -6,9 +6,10 @@ import { VideoReveal } from '@/components/VideoReveal'
 gsap.registerPlugin(ScrollTrigger)
 
 const bullets = [
-  'Quanta energia perdi contro l\'aria alla tua velocità di riferimento',
-  'Dove il tuo corpo e la tua bici accumulano più pressione',
-  'Quanto puoi guadagnare cambiando posizione, casco o telaio'
+  'Scopri dove stai perdendo velocità senza accorgertene',
+  'Esplora e quantifica la differenza tra diverse posizioni',
+  'Identifica le aree che generano più resistenza aerodinamica',
+  'Valuta l\'impatto reale di posizione, casco e attrezzatura',
 ]
 
 export function IntroSection() {
