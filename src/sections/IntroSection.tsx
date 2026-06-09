@@ -56,7 +56,6 @@ export function IntroSection() {
           Oltre i 30 km/h, la maggior parte della potenza che produci serve semplicemente a vincere la resistenza dell’aria. Ogni watt perso contro il vento è energia che non si trasforma in velocità.
           Su strada intervengono decine di variabili: vento, traffico, asfalto, pendenza, stanchezza. Nelle nostre simulazioni eliminiamo il rumore e analizziamo ciò che conta davvero: l’interazione tra te, la tua bici e l’aria che ti circonda.
           </p>
-          </p>
 
           <div className="space-y-4">
             {bullets.map((bullet, i) => (
