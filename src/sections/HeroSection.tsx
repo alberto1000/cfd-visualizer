@@ -63,7 +63,7 @@ export function HeroSection() {
           ref={titleRef}
           className="opacity-0 translate-y-8 font-heading text-[clamp(2.5rem,6vw,5rem)] font-bold text-txt-primary leading-[0.95] mb-6"
         >
-          La tua galleria del vento digitale, a portata di click.
+          La tua galleria del vento digitale
         </h1>
 
         <p
@@ -78,7 +78,7 @@ export function HeroSection() {
             href="#scenarios"
             className="px-8 py-3.5 bg-cfd-cyan text-bg-primary font-medium rounded-full hover:shadow-glow-strong transition-all duration-300 text-sm tracking-wide"
           >
-            Vedi un Esempio di Report
+            Vai agli insight 
           </a>
           <a
             href="#method"
@@ -88,13 +88,6 @@ export function HeroSection() {
           </a>
         </div>
 
-        <div ref={statsRef} className="opacity-0 translate-y-8 flex items-center justify-center gap-3 text-txt-tertiary text-xs tracking-widest uppercase">
-          <span>Validato in wind tunnel</span>
-          <span>·</span>
-          <span>Errore &lt; 5%</span>
-          <span>·</span>
-          <span>Da 400€</span>
-        </div>
       </div>
 
       {/* Scroll-down chevron */}
