@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { VideoReveal } from '@/components/VideoReveal'
-import { Check } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -10,43 +9,43 @@ type ComparisonType = {
   id: string
   label: string
   description: string
-  leftVideo: string   // velocità / flusso
-  rightVideo: string  // pressione
+  leftVideo: string
+  rightVideo: string
 }
 
 const comparisons: ComparisonType[] = [
   {
     id: 'position',
     label: 'Confronto posizioni',
-    description: 'Vedi come cambia il flusso e la pressione tra due posizioni del corpo: gomiti alti vs bassi, schiena curva vs dritta.',
+    description: "Vedi come cambia il flusso e la pressione tra due posizioni del corpo: gomiti alti vs bassi, schiena curva vs dritta.",
     leftVideo: '/videos/cyclist-54kmh.mp4',
     rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
   {
     id: 'helmet',
     label: 'Confronto caschi',
-    description: 'Confronta il flusso d\'aria e il campo di pressione tra il tuo casco attuale e uno più aerodinamico.',
+    description: "Confronta il flusso d'aria e il campo di pressione tra il tuo casco attuale e uno più aerodinamico.",
     leftVideo: '/videos/cyclist-54kmh.mp4',
     rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
   {
     id: 'speed',
     label: 'Confronto velocità',
-    description: 'Confronta 36 km/h vs 54 km/h: come cambia il flusso e la pressione sul tuo corpo alla stessa posizione.',
+    description: "Confronta 36 km/h vs 54 km/h: come cambia il flusso e la pressione sul tuo corpo alla stessa posizione.",
     leftVideo: '/videos/cyclist-54kmh.mp4',
     rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
   {
     id: 'bike',
     label: 'Confronto bici',
-    description: 'Confronta due configurazioni di bici diverse: cronometro vs bici da strada, manubrio integrato vs tradizionale.',
+    description: "Confronta due configurazioni di bici diverse: cronometro vs bici da strada, manubrio integrato vs tradizionale.",
     leftVideo: '/videos/cyclist-54kmh.mp4',
     rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
 ]
 
 export function PersonalizationSection() {
-  const [selected, setSelected] = useState<string>('position') // solo una alla volta
+  const [selected, setSelected] = useState<string>('position')
   const sectionRef = useRef(null)
 
   const activeComparison = comparisons.find((c) => c.id === selected) || comparisons[0]
@@ -72,7 +71,6 @@ export function PersonalizationSection() {
       className="py-20 lg:py-32 bg-[#0a0a0a]"
     >
       <div className="max-w-[1200px] mx-auto px-6">
-        {/* Header */}
         <div className="personalization-header text-center mb-12">
           <p className="text-[#06b6d4] text-xs font-medium tracking-[0.25em] uppercase mb-4">
             PERSONALIZZA IL TUO REPORT
@@ -85,10 +83,7 @@ export function PersonalizationSection() {
           </p>
         </div>
 
-        {/* Grid: checkbox left, video right */}
         <div className="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-8 items-start">
-          
-          {/* LEFT: Options (radio-style, solo una selezione) */}
           <div className="space-y-3">
             {comparisons.map((comparison) => {
               const isSelected = selected === comparison.id
@@ -104,7 +99,6 @@ export function PersonalizationSection() {
                   }`}
                 >
                   <div className="flex items-start gap-4">
-                    {/* Radio circle */}
                     <div
                       className={`mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
                         isSelected
@@ -131,11 +125,8 @@ export function PersonalizationSection() {
             })}
           </div>
 
-          {/* RIGHT: Dual Video Preview */}
           <div className="lg:sticky lg:top-24">
             <div className="bg-[#1a1a1a] rounded-2xl border border-white/10 overflow-hidden">
-              
-              {/* Header */}
               <div className="p-4 border-b border-white/10 flex items-center justify-between">
                 <p className="text-[#06b6d4] text-xs font-medium tracking-[0.2em] uppercase">
                   {activeComparison.label}
@@ -145,9 +136,7 @@ export function PersonalizationSection() {
                 </p>
               </div>
 
-              {/* Two videos side by side */}
               <div className="grid grid-cols-2 gap-1">
-                {/* Left: Velocity / Flow */}
                 <div>
                   <div className="bg-black/50 px-3 py-2">
                     <p className="text-[10px] text-[#22c55e] uppercase tracking-wider font-medium">
@@ -162,7 +151,6 @@ export function PersonalizationSection() {
                   />
                 </div>
 
-                {/* Right: Pressure */}
                 <div>
                   <div className="bg-black/50 px-3 py-2">
                     <p className="text-[10px] text-[#f97316] uppercase tracking-wider font-medium">
@@ -178,7 +166,6 @@ export function PersonalizationSection() {
                 </div>
               </div>
 
-              {/* Footer */}
               <div className="p-4 border-t border-white/10">
                 <p className="text-gray-400 text-xs leading-relaxed">
                   <span className="text-white font-medium">Sinistra:</span> mappa di velocità — dove l'aria accelera e forma turbolenze.{' '}
@@ -187,7 +174,6 @@ export function PersonalizationSection() {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
