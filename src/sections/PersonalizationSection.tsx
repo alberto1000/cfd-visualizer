@@ -153,7 +153,7 @@ export function PersonalizationSection() {
               <div className="bg-black/60 px-4 py-3 flex items-center justify-between border-b border-white/10">
                 <p className="text-[#22c55e] text-xs font-medium uppercase tracking-wider">
                   Configurazione A
-                
+                </p>
               </div>
               <VideoReveal
                 src={activeComparison.leftVideo}
