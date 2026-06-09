@@ -86,10 +86,10 @@ export function PersonalizationSection() {
             IL TUO REPORT SU MISURA
           </p>
           <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight mb-4">
-            Cosa vuoi scoprire?
+            Cosa vuoi esplorare?
           </h2>
           <p className="text-gray-400 max-w-[600px] mx-auto leading-relaxed">
-            Scegli il confronto. I video si aggiornano automaticamente con flusso d'aria e pressione affiancati.
+           Due caschi diversi? Due posizioni differenti? l'impatto dei gomiti? questi sono solo alcuni degli esempi che ti proponiamo...sbizzarisciti!
           </p>
         </div>
 
@@ -152,9 +152,8 @@ export function PersonalizationSection() {
             <div className="bg-[#1a1a1a] rounded-2xl border border-white/10 overflow-hidden">
               <div className="bg-black/60 px-4 py-3 flex items-center justify-between border-b border-white/10">
                 <p className="text-[#22c55e] text-xs font-medium uppercase tracking-wider">
-                  Flusso d'aria
-                </p>
-                <span className="text-gray-500 text-xs">Configurazione A</span>
+                  Configurazione A
+                
               </div>
               <VideoReveal
                 src={activeComparison.leftVideo}
@@ -164,7 +163,7 @@ export function PersonalizationSection() {
               />
               <div className="px-4 py-3 bg-black/30">
                 <p className="text-gray-500 text-xs">
-                  Dove l'aria scorre liscia e dove forma turbolenze che ti rallentano
+                  
                 </p>
               </div>
             </div>
@@ -172,9 +171,9 @@ export function PersonalizationSection() {
             <div className="bg-[#1a1a1a] rounded-2xl border border-white/10 overflow-hidden">
               <div className="bg-black/60 px-4 py-3 flex items-center justify-between border-b border-white/10">
                 <p className="text-[#f97316] text-xs font-medium uppercase tracking-wider">
-                  Campo di pressione
+                  Configurazione B
                 </p>
-                <span className="text-gray-500 text-xs">Configurazione B</span>
+                
               </div>
               <VideoReveal
                 src={activeComparison.rightVideo}
@@ -184,7 +183,7 @@ export function PersonalizationSection() {
               />
               <div className="px-4 py-3 bg-black/30">
                 <p className="text-gray-500 text-xs">
-                  Le zone di alta pressione dove l\'aria colpisce con più forza
+                  
                 </p>
               </div>
             </div>
