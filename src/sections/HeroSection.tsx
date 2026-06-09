@@ -56,21 +56,21 @@ export function HeroSection() {
           ref={overlineRef}
           className="opacity-0 translate-y-8 text-cfd-cyan text-xs font-medium tracking-[0.25em] uppercase mb-6"
         >
-          FES ENGINEERING — SIMULAZIONE CFD
+          FES ENGINEERING — SCIENCE FOR CYCLIST PERFORMANCE
         </p>
 
         <h1
           ref={titleRef}
           className="opacity-0 translate-y-8 font-heading text-[clamp(2.5rem,6vw,5rem)] font-bold text-txt-primary leading-[0.95] mb-6"
         >
-          La tua galleria del vento digitale
+          La tua galleria del vento digitale, a portata di click.
         </h1>
 
         <p
           ref={subtitleRef}
           className="opacity-0 translate-y-8 text-lg text-txt-secondary max-w-[700px] mx-auto mb-10 leading-relaxed"
         >
-          Non serve pedalare più forte se puoi andare più veloce. Ottimizza la tua aerodinamica, riduci il drag e trasforma ogni watt della tua potenza in velocità reale.
+          Non serve pedalare più forte per andare più veloce. Ottimizza la tua aerodinamica, riduci il drag e trasforma ogni watt della tua potenza in velocità pura.
         </p>
 
         <div ref={ctaRef} className="opacity-0 translate-y-8 flex flex-wrap items-center justify-center gap-4 mb-12">
