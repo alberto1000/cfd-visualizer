@@ -5,7 +5,7 @@ import { IntroSection } from '@/sections/IntroSection'
 import { MethodSection } from '@/sections/MethodSection'
 import { PersonalizationSection } from '@/sections/PersonalizationSection'
 
-import { PressureSection } from '@/sections/PressureSection'
+
 import { InsightsSection } from '@/sections/InsightsSection'
 import { PartnersSection } from '@/sections/PartnersSection'
 import { ContactSection } from '@/sections/ContactSection'
@@ -20,7 +20,7 @@ export default function Home() {
         <MethodSection />
         <PersonalizationSection />
 
-        <PressureSection />
+
         <InsightsSection />
         <PartnersSection />
         <ContactSection />
