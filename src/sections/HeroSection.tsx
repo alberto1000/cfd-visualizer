@@ -56,23 +56,22 @@ export function HeroSection() {
           ref={overlineRef}
           className="opacity-0 translate-y-8 text-cfd-cyan text-xs font-medium tracking-[0.25em] uppercase mb-6"
         >
-          FES ENGINEERING — SIMULAZIONE CFD
+          FES ENGINEERING — LA TUA GALLERIA DEL VENTO DIGITALE
         </p>
 
         <h1
           ref={titleRef}
           className="opacity-0 translate-y-8 font-heading text-[clamp(2.5rem,6vw,5rem)] font-bold text-txt-primary leading-[0.95] mb-6"
         >
-          La tua galleria del vento digitale
+          La scienza al servizio delle performance sportive
         </h1>
 
         <p
           ref={subtitleRef}
           className="opacity-0 translate-y-8 text-lg text-txt-secondary max-w-[700px] mx-auto mb-10 leading-relaxed"
         >
-          Simuliamo il tuo profilo aerodinamico in condizioni controllate: stessa precisione di una wind tunnel reale, a una frazione del costo
+          Non serve pedalare più forte per andare più veloce. Ottimizza la tua aerodinamica, riduci il drag e trasforma ogni watt della tua potenza in velocità reale.
         </p>
-
         <div ref={ctaRef} className="opacity-0 translate-y-8 flex flex-wrap items-center justify-center gap-4 mb-12">
           <a
             href="#scenarios"
@@ -88,14 +87,7 @@ export function HeroSection() {
           </a>
         </div>
 
-        <div ref={statsRef} className="opacity-0 translate-y-8 flex items-center justify-center gap-3 text-txt-tertiary text-xs tracking-widest uppercase">
-          <span>Validato in wind tunnel</span>
-          <span>·</span>
-          <span>Errore &lt; 5%</span>
-          <span>·</span>
-          <span>Da 400€</span>
-        </div>
-      </div>
+     
 
       {/* Scroll-down chevron */}
       <div
