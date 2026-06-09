@@ -33,22 +33,21 @@ const options: PersonalizationOption[] = [
     id: 'wheels',
     label: 'Confronto ruote',
     description: 'Cerchio alto vs basso, profilo diverso, raggi tradizionali vs aero. Il flusso attorno alle ruote cambia più di quanto pensi.',
-    videoSrc: '/videos/cyclist-54kmh.mp4', // placeholder, sostituirai quando avrai il video
+    videoSrc: '/videos/cyclist-54kmh.mp4',
     available: false,
   },
   {
     id: 'clothing',
     label: 'Confronto abbigliamento',
     description: 'Tuta aero vs maglia normale, calzamaglia vs pantaloncini. La pelle liscia conta, ma non sempre come credi.',
-    videoSrc: '/videos/pressure-field_54kmh.mp4', // placeholder, sostituirai quando avrai il video
+    videoSrc: '/videos/pressure-field_54kmh.mp4',
     available: false,
   },
   {
     id: 'accessories',
     label: 'Accessori e dettagli',
     description: 'Borraccia sul telaio vs sotto il sellino, computer da manubrio vs sullo stelo, pedali standard vs aero. Ogni dettaglio ha un costo in watt.',
-    videoSrc: '/videos/cyclist-54kmh.mp4', // placeholder, sostituirai quando avrai il video
-    videoSrc: '/videos/cyclist-54kmh.mp4', // placeholder, sostituirai quando avrai il video
+    videoSrc: '/videos/cyclist-54kmh.mp4',
     available: false,
   },
 ]
@@ -92,7 +91,7 @@ export function PersonalizationSection() {
     <section
       id="personalizza"
       ref={sectionRef}
-      className="py-[clamp(5rem,10vh,8rem)] bg-bg-primary"
+      className="py-20 lg:py-32 bg-bg-primary"
     >
       <div className="max-w-[1200px] mx-auto px-6">
         {/* Header */}
@@ -100,7 +99,7 @@ export function PersonalizationSection() {
           <p className="text-cfd-cyan text-xs font-medium tracking-[0.25em] uppercase mb-4">
             PERSONALIZZA IL TUO REPORT
           </p>
-          <h2 className="font-heading text-[clamp(2rem,4vw,3.5rem)] font-bold text-txt-primary leading-tight mb-4">
+          <h2 className="font-heading text-3xl lg:text-5xl font-bold text-txt-primary leading-tight mb-4">
             Cosa vuoi confrontare?
           </h2>
           <p className="text-txt-secondary max-w-[600px] mx-auto leading-relaxed">
