@@ -3,6 +3,7 @@ import { Footer } from '@/components/Footer'
 import { HeroSection } from '@/sections/HeroSection'
 import { IntroSection } from '@/sections/IntroSection'
 import { MethodSection } from '@/sections/MethodSection'
+import { PersonalizationSection } from '@/sections/PersonalizationSection'
 import { ScenariosSection } from '@/sections/ScenariosSection'
 import { PressureSection } from '@/sections/PressureSection'
 import { InsightsSection } from '@/sections/InsightsSection'
@@ -17,6 +18,7 @@ export default function Home() {
         <HeroSection />
         <IntroSection />
         <MethodSection />
+        <PersonalizationSection />
         <ScenariosSection />
         <PressureSection />
         <InsightsSection />
