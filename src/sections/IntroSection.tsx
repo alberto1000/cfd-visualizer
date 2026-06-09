@@ -50,13 +50,12 @@ export function IntroSection() {
             DI COSA SI TRATTA
           </p>
           <h2 className="font-heading text-[clamp(2rem,4vw,3.5rem)] font-bold text-txt-primary leading-tight mb-6">
-            L'aria è il tuo vero avversario
+          L’aria è il tuo avversario più grande       
           </h2>
           <p className="text-txt-secondary leading-relaxed mb-4">
-            Quando pedali, la resistenza che senti di più non viene dalla fatica dei muscoli né dall'attrito delle ruote: viene dall'aria che devi spostare.
+          Oltre i 30 km/h, la maggior parte della potenza che produci serve semplicemente a vincere la resistenza dell’aria. Ogni watt perso contro il vento è energia che non si trasforma in velocità.
+          Su strada intervengono decine di variabili: vento, traffico, asfalto, pendenza, stanchezza. Nelle nostre simulazioni eliminiamo il rumore e analizziamo ciò che conta davvero: l’interazione tra te, la tua bici e l’aria che ti circonda.
           </p>
-          <p className="text-txt-secondary leading-relaxed mb-8">
-            In strada ci sono il vento, le buche, la stanchezza, il traffico. Al computer possiamo eliminare tutte queste sorgenti di errore e studiare solo cio che conta. 
           </p>
 
           <div className="space-y-4">
