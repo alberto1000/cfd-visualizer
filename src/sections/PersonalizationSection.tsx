@@ -18,14 +18,14 @@ const options: PersonalizationOption[] = [
   {
     id: 'position',
     label: 'Confronto posizioni',
-    description: 'Vedi come cambia il flusso d\'aria abbassando i gomiti, alzando il sedile o modificando l\'angolo del torso. Ogni posizione ha il suo video dedicato.',
+    description: "Vedi come cambia il flusso d'aria abbassando i gomiti, alzando il sedile o modificando l'angolo del torso. Ogni posizione ha il suo video dedicato.",
     videoSrc: '/videos/cyclist-54kmh.mp4',
     available: true,
   },
   {
     id: 'helmet',
     label: 'Confronto caschi',
-    description: 'Confronta il campo di pressione tra il tuo casco attuale e uno più aerodinamico. Vedi esattamente dove l\'aria colpisce di più.',
+    description: "Confronta il campo di pressione tra il tuo casco attuale e uno più aerodinamico. Vedi esattamente dove l'aria colpisce di più.",
     videoSrc: '/videos/pressure-field_54kmh.mp4',
     available: true,
   },
@@ -173,7 +173,7 @@ export function PersonalizationSection() {
                 <p className="text-txt-tertiary text-xs mt-1">
                   {activeOptions.length > 0
                     ? `Mostrando: ${activeOptions.map((o) => o.label).join(', ')}`
-                    : 'Seleziona un\'opzione per vedere l\'anteprima'}
+                    : "Seleziona un'opzione per vedere l'anteprima"}
                 </p>
               </div>
 
@@ -188,7 +188,7 @@ export function PersonalizationSection() {
                 <p className="text-txt-tertiary text-xs leading-relaxed">
                   {activeOptions.length > 0
                     ? 'Questo è un video dimostrativo. Nel tuo report finale, qui vedrai il confronto tra le tue configurazioni reali con i dati numerici affiancati.'
-                    : 'Seleziona almeno un\'opzione a sinistra per vedere come apparirà il tuo report.'}
+                    : "Seleziona almeno un'opzione a sinistra per vedere come apparirà il tuo report."}
                 </p>
               </div>
             </div>
