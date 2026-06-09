@@ -6,53 +6,50 @@ import { Check } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const options = [
+type ComparisonType = {
+  id: string
+  label: string
+  description: string
+  leftVideo: string   // velocità / flusso
+  rightVideo: string  // pressione
+}
+
+const comparisons: ComparisonType[] = [
   {
     id: 'position',
     label: 'Confronto posizioni',
-    description: "Vedi come cambia il flusso d'aria abbassando i gomiti, alzando il sedile o modificando l'angolo del torso.",
-    videoSrc: '/videos/cyclist-54kmh.mp4',
-    available: true,
+    description: 'Vedi come cambia il flusso e la pressione tra due posizioni del corpo: gomiti alti vs bassi, schiena curva vs dritta.',
+    leftVideo: '/videos/cyclist-54kmh.mp4',
+    rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
   {
     id: 'helmet',
     label: 'Confronto caschi',
-    description: "Confronta il campo di pressione tra il tuo casco attuale e uno più aerodinamico.",
-    videoSrc: '/videos/pressure-field_54kmh.mp4',
-    available: true,
+    description: 'Confronta il flusso d\'aria e il campo di pressione tra il tuo casco attuale e uno più aerodinamico.',
+    leftVideo: '/videos/cyclist-54kmh.mp4',
+    rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
   {
-    id: 'wheels',
-    label: 'Confronto ruote',
-    description: 'Cerchio alto vs basso, profilo diverso, raggi tradizionali vs aero.',
-    videoSrc: '/videos/cyclist-54kmh.mp4',
-    available: false,
+    id: 'speed',
+    label: 'Confronto velocità',
+    description: 'Confronta 36 km/h vs 54 km/h: come cambia il flusso e la pressione sul tuo corpo alla stessa posizione.',
+    leftVideo: '/videos/cyclist-54kmh.mp4',
+    rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
   {
-    id: 'clothing',
-    label: 'Confronto abbigliamento',
-    description: 'Tuta aero vs maglia normale, calzamaglia vs pantaloncini.',
-    videoSrc: '/videos/pressure-field_54kmh.mp4',
-    available: false,
-  },
-  {
-    id: 'accessories',
-    label: 'Accessori e dettagli',
-    description: 'Borraccia, computer, pedali — ogni dettaglio ha un costo in watt.',
-    videoSrc: '/videos/cyclist-54kmh.mp4',
-    available: false,
+    id: 'bike',
+    label: 'Confronto bici',
+    description: 'Confronta due configurazioni di bici diverse: cronometro vs bici da strada, manubrio integrato vs tradizionale.',
+    leftVideo: '/videos/cyclist-54kmh.mp4',
+    rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
 ]
 
 export function PersonalizationSection() {
-  const [selected, setSelected] = useState(['position'])
+  const [selected, setSelected] = useState<string>('position') // solo una alla volta
   const sectionRef = useRef(null)
 
-  const toggleOption = (id: string) => {
-    setSelected((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    )
-  }
+  const activeComparison = comparisons.find((c) => c.id === selected) || comparisons[0]
 
   useEffect(() => {
     if (!sectionRef.current) return
@@ -67,11 +64,6 @@ export function PersonalizationSection() {
     }, sectionRef)
     return () => ctx.revert()
   }, [])
-
-  const activeOptions = options.filter((o) => selected.includes(o.id))
-  const activeVideo = activeOptions.length > 0 
-    ? activeOptions[activeOptions.length - 1].videoSrc 
-    : options[0].videoSrc
 
   return (
     <section
@@ -89,56 +81,48 @@ export function PersonalizationSection() {
             Cosa vuoi confrontare?
           </h2>
           <p className="text-gray-400 max-w-[600px] mx-auto leading-relaxed">
-            Ogni ciclista ha le sue domande. Seleziona cosa vuoi vedere nel tuo report.
+            Seleziona il tipo di confronto. Il video si aggiorna automaticamente con le due visualizzazioni affiancate.
           </p>
         </div>
 
         {/* Grid: checkbox left, video right */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-8 items-start">
           
-          {/* LEFT: Options */}
+          {/* LEFT: Options (radio-style, solo una selezione) */}
           <div className="space-y-3">
-            {options.map((option) => {
-              const isSelected = selected.includes(option.id)
-              const isAvailable = option.available
+            {comparisons.map((comparison) => {
+              const isSelected = selected === comparison.id
 
               return (
                 <div
-                  key={option.id}
-                  onClick={() => isAvailable && toggleOption(option.id)}
-                  className={`p-5 rounded-xl border transition-all duration-300 ${
+                  key={comparison.id}
+                  onClick={() => setSelected(comparison.id)}
+                  className={`p-5 rounded-xl border transition-all duration-300 cursor-pointer ${
                     isSelected
-                      ? 'bg-[#06b6d4]/5 border-[#06b6d4]/30'
-                      : isAvailable
-                      ? 'bg-[#1a1a1a] border-white/10 hover:border-white/20 cursor-pointer'
-                      : 'bg-[#1a1a1a]/50 border-white/5 opacity-60 cursor-not-allowed'
+                      ? 'bg-[#06b6d4]/10 border-[#06b6d4]/40 shadow-[0_0_30px_rgba(6,182,212,0.15)]'
+                      : 'bg-[#1a1a1a] border-white/10 hover:border-white/25 hover:bg-[#1a1a1a]/80'
                   }`}
                 >
                   <div className="flex items-start gap-4">
-                    {/* Checkbox */}
+                    {/* Radio circle */}
                     <div
-                      className={`mt-0.5 w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 transition-colors ${
+                      className={`mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
                         isSelected
-                          ? 'bg-[#06b6d4] border-[#06b6d4]'
-                          : 'border-white/20'
+                          ? 'border-[#06b6d4] bg-[#06b6d4]'
+                          : 'border-white/30'
                       }`}
                     >
-                      {isSelected && <Check className="w-3.5 h-3.5 text-black" />}
+                      {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
                     </div>
 
                     <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="text-white font-medium text-sm">
-                          {option.label}
-                        </h3>
-                        {!isAvailable && (
-                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-gray-500 uppercase tracking-wider">
-                            Disponibile su richiesta
-                          </span>
-                        )}
-                      </div>
+                      <h3 className={`font-medium text-sm mb-1 ${
+                        isSelected ? 'text-[#06b6d4]' : 'text-white'
+                      }`}>
+                        {comparison.label}
+                      </h3>
                       <p className="text-gray-400 text-xs leading-relaxed">
-                        {option.description}
+                        {comparison.description}
                       </p>
                     </div>
                   </div>
@@ -147,30 +131,58 @@ export function PersonalizationSection() {
             })}
           </div>
 
-          {/* RIGHT: Video Preview */}
-          <div className="lg:sticky lg:top-24 h-fit">
+          {/* RIGHT: Dual Video Preview */}
+          <div className="lg:sticky lg:top-24">
             <div className="bg-[#1a1a1a] rounded-2xl border border-white/10 overflow-hidden">
-              <div className="p-4 border-b border-white/10">
+              
+              {/* Header */}
+              <div className="p-4 border-b border-white/10 flex items-center justify-between">
                 <p className="text-[#06b6d4] text-xs font-medium tracking-[0.2em] uppercase">
-                  ANTEPRIMA
+                  {activeComparison.label}
                 </p>
-                <p className="text-gray-500 text-xs mt-1">
-                  {activeOptions.length > 0
-                    ? `Mostrando: ${activeOptions.map((o) => o.label).join(', ')}`
-                    : "Seleziona un'opzione"}
+                <p className="text-gray-500 text-xs">
+                  Configurazione A vs B
                 </p>
               </div>
 
-              <VideoReveal
-                src={activeVideo}
-                ariaLabel="Anteprima"
-                className="rounded-none border-0"
-                aspectRatio="16/9"
-              />
+              {/* Two videos side by side */}
+              <div className="grid grid-cols-2 gap-1">
+                {/* Left: Velocity / Flow */}
+                <div>
+                  <div className="bg-black/50 px-3 py-2">
+                    <p className="text-[10px] text-[#22c55e] uppercase tracking-wider font-medium">
+                      Flusso d'aria
+                    </p>
+                  </div>
+                  <VideoReveal
+                    src={activeComparison.leftVideo}
+                    ariaLabel="Flusso d'aria"
+                    className="rounded-none border-0"
+                    aspectRatio="4/3"
+                  />
+                </div>
 
-              <div className="p-4">
-                <p className="text-gray-500 text-xs leading-relaxed">
-                  Video dimostrativo. Nel report finale vedrai i tuoi dati reali.
+                {/* Right: Pressure */}
+                <div>
+                  <div className="bg-black/50 px-3 py-2">
+                    <p className="text-[10px] text-[#f97316] uppercase tracking-wider font-medium">
+                      Campo di pressione
+                    </p>
+                  </div>
+                  <VideoReveal
+                    src={activeComparison.rightVideo}
+                    ariaLabel="Campo di pressione"
+                    className="rounded-none border-0"
+                    aspectRatio="4/3"
+                  />
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="p-4 border-t border-white/10">
+                <p className="text-gray-400 text-xs leading-relaxed">
+                  <span className="text-white font-medium">Sinistra:</span> mappa di velocità — dove l'aria accelera e forma turbolenze.{' '}
+                  <span className="text-white font-medium">Destra:</span> mappa di pressione — dove l'aria colpisce con più forza.
                 </p>
               </div>
             </div>
