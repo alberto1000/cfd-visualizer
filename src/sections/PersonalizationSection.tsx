@@ -18,7 +18,7 @@ type ComparisonType = {
 const comparisons: ComparisonType[] = [
   {
     id: 'position',
-    label: 'Posizione sul sellino',
+    label: 'Posizione',
     headline: 'Trova i watt nascosti nella tua postura',
     description: 'Una differenza di 2 cm nell\'altezza dei gomiti può valere 15 watt. Lo stesso vale per l\'angolo del torso. Scopri quanto lasci per strada con la tua posizione attuale.',
     benefit: 'Risparmio stimato: 10-20 watt senza spendere un euro',
@@ -89,115 +89,106 @@ export function PersonalizationSection() {
             Cosa vuoi scoprire?
           </h2>
           <p className="text-gray-400 max-w-[600px] mx-auto leading-relaxed">
-            Ogni confronto ti mostra due visualizzazioni affiancate: il flusso d\'aria e il campo di pressione. 
-            Scegli cosa vuoi analizzare — i numeri parlano chiaro.
+            Scegli il confronto. I video si aggiornano automaticamente con flusso d'aria e pressione affiancati.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-8 items-start">
-          
-          <div className="space-y-3">
-            {comparisons.map((comparison) => {
-              const isSelected = selected === comparison.id
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
+          {comparisons.map((comparison) => {
+            const isSelected = selected === comparison.id
 
-              return (
-                <div
-                  key={comparison.id}
-                  onClick={() => setSelected(comparison.id)}
-                  className={`p-5 rounded-xl border transition-all duration-300 cursor-pointer ${
-                    isSelected
-                      ? 'bg-[#06b6d4]/10 border-[#06b6d4]/40 shadow-[0_0_30px_rgba(6,182,212,0.15)]'
-                      : 'bg-[#1a1a1a] border-white/10 hover:border-white/25 hover:bg-[#1a1a1a]/80'
-                  }`}
-                >
-                  <div className="flex items-start gap-4">
-                    <div
-                      className={`mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
-                        isSelected
-                          ? 'border-[#06b6d4] bg-[#06b6d4]'
-                          : 'border-white/30'
-                      }`}
-                    >
-                      {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
-                    </div>
+            return (
+              <button
+                key={comparison.id}
+                onClick={() => setSelected(comparison.id)}
+                className={`px-6 py-3 rounded-full border text-sm font-medium transition-all duration-300 ${
+                  isSelected
+                    ? 'bg-[#06b6d4]/15 border-[#06b6d4] text-[#06b6d4] shadow-[0_0_20px_rgba(6,182,212,0.2)]'
+                    : 'bg-[#1a1a1a] border-white/10 text-gray-400 hover:border-white/25 hover:text-white'
+                }`}
+              >
+                <span className="flex items-center gap-2">
+                  <span
+                    className={`w-2.5 h-2.5 rounded-full transition-all ${
+                      isSelected ? 'bg-[#06b6d4] scale-110' : 'bg-white/20'
+                    }`}
+                  />
+                  {comparison.label}
+                </span>
+              </button>
+            )
+          })}
+        </div>
 
-                    <div className="flex-1">
-                      <h3 className={`font-semibold text-sm mb-1 ${
-                        isSelected ? 'text-[#06b6d4]' : 'text-white'
-                      }`}>
-                        {comparison.label}
-                      </h3>
-                      <p className="text-gray-400 text-xs leading-relaxed">
-                        {comparison.headline}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-
-          <div className="lg:sticky lg:top-24">
-            <div className="bg-[#1a1a1a] rounded-2xl border border-white/10 overflow-hidden">
-              
-              <div className="p-5 border-b border-white/10">
+        <div className="space-y-8">
+          <div className="bg-[#1a1a1a] rounded-2xl border border-white/10 p-6 lg:p-8">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+              <div className="flex-1">
                 <p className="text-[#06b6d4] text-xs font-medium tracking-[0.2em] uppercase mb-2">
                   {activeComparison.label}
                 </p>
-                <h3 className="text-white text-xl font-bold mb-2">
+                <h3 className="text-white text-2xl lg:text-3xl font-bold mb-3">
                   {activeComparison.headline}
                 </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-gray-400 text-base leading-relaxed max-w-[700px]">
                   {activeComparison.description}
                 </p>
               </div>
-
-              <div className="grid grid-cols-2 gap-1">
-                <div>
-                  <div className="bg-black/50 px-3 py-2 flex items-center justify-between">
-                    <p className="text-[10px] text-[#22c55e] uppercase tracking-wider font-medium">
-                      Flusso d\'aria
-                    </p>
-                    <span className="text-[10px] text-gray-500">Config A</span>
-                  </div>
-                  <VideoReveal
-                    src={activeComparison.leftVideo}
-                    ariaLabel="Flusso d'aria"
-                    className="rounded-none border-0"
-                    aspectRatio="4/3"
-                  />
-                </div>
-
-                <div>
-                  <div className="bg-black/50 px-3 py-2 flex items-center justify-between">
-                    <p className="text-[10px] text-[#f97316] uppercase tracking-wider font-medium">
-                      Pressione
-                    </p>
-                    <span className="text-[10px] text-gray-500">Config B</span>
-                  </div>
-                  <VideoReveal
-                    src={activeComparison.rightVideo}
-                    ariaLabel="Campo di pressione"
-                    className="rounded-none border-0"
-                    aspectRatio="4/3"
-                  />
-                </div>
-              </div>
-
-              <div className="p-5 border-t border-white/10 bg-[#06b6d4]/5">
+              <div className="bg-[#06b6d4]/10 border border-[#06b6d4]/20 rounded-xl p-4 lg:min-w-[280px]">
                 <div className="flex items-center gap-2 mb-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#06b6d4]" />
+                  <div className="w-2 h-2 rounded-full bg-[#06b6d4]" />
                   <p className="text-[#06b6d4] text-xs font-medium uppercase tracking-wider">
                     Risultato
                   </p>
                 </div>
-                <p className="text-white text-sm font-medium">
+                <p className="text-white font-semibold">
                   {activeComparison.benefit}
                 </p>
               </div>
             </div>
           </div>
 
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="bg-[#1a1a1a] rounded-2xl border border-white/10 overflow-hidden">
+              <div className="bg-black/60 px-4 py-3 flex items-center justify-between border-b border-white/10">
+                <p className="text-[#22c55e] text-xs font-medium uppercase tracking-wider">
+                  Flusso d'aria
+                </p>
+                <span className="text-gray-500 text-xs">Configurazione A</span>
+              </div>
+              <VideoReveal
+                src={activeComparison.leftVideo}
+                ariaLabel="Flusso d'aria"
+                className="rounded-none border-0"
+                aspectRatio="16/9"
+              />
+              <div className="px-4 py-3 bg-black/30">
+                <p className="text-gray-500 text-xs">
+                  Dove l'aria scorre liscia e dove forma turbolenze che ti rallentano
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-[#1a1a1a] rounded-2xl border border-white/10 overflow-hidden">
+              <div className="bg-black/60 px-4 py-3 flex items-center justify-between border-b border-white/10">
+                <p className="text-[#f97316] text-xs font-medium uppercase tracking-wider">
+                  Campo di pressione
+                </p>
+                <span className="text-gray-500 text-xs">Configurazione B</span>
+              </div>
+              <VideoReveal
+                src={activeComparison.rightVideo}
+                ariaLabel="Campo di pressione"
+                className="rounded-none border-0"
+                aspectRatio="16/9"
+              />
+              <div className="px-4 py-3 bg-black/30">
+                <p className="text-gray-500 text-xs">
+                  Le zone di alta pressione dove l\'aria colpisce con più forza
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
