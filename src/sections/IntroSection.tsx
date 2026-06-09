@@ -9,7 +9,7 @@ const bullets = [
   'Scopri dove stai perdendo velocità senza accorgertene',
   'Esplora e quantifica la differenza tra diverse posizioni',
   'Identifica le aree che generano più resistenza aerodinamica',
-  'Valuta l\'impatto reale di posizione, casco e attrezzatura',
+  'Valuta l\'impatto reale di bicicletta, casco e attrezzatura',
 ]
 
 export function IntroSection() {
