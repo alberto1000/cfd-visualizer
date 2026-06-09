@@ -53,17 +53,19 @@ const options: PersonalizationOption[] = [
 ]
 
 export function PersonalizationSection() {
-  const [selected, setSelected] = useState<string[]>(['position'])
-  const sectionRef = useRef<<HTMLElement>(null)
-  const gridRef = useRef<<HTMLDivElement>(null)
+  const [selected, setSelected] = useState(['position'])
+  const sectionRef = useRef(null)
+  const gridRef = useRef(null)
 
   const toggleOption = (id: string) => {
-    setSelected((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    setSelected((prev: string[]) =>
+      prev.includes(id) ? prev.filter((x: string) => x !== id) : [...prev, id]
     )
   }
 
   useEffect(() => {
+    if (!sectionRef.current || !gridRef.current) return
+    
     const ctx = gsap.context(() => {
       gsap.from('.personalization-header', {
         opacity: 0,
@@ -94,7 +96,6 @@ export function PersonalizationSection() {
       className="py-20 lg:py-32 bg-bg-primary"
     >
       <div className="max-w-[1200px] mx-auto px-6">
-        {/* Header */}
         <div className="personalization-header text-center mb-12">
           <p className="text-cfd-cyan text-xs font-medium tracking-[0.25em] uppercase mb-4">
             PERSONALIZZA IL TUO REPORT
@@ -108,7 +109,6 @@ export function PersonalizationSection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-8 items-start">
-          {/* Left: Options */}
           <div ref={gridRef} className="space-y-3">
             {options.map((option) => {
               const isSelected = selected.includes(option.id)
@@ -127,7 +127,6 @@ export function PersonalizationSection() {
                   }`}
                 >
                   <div className="flex items-start gap-4">
-                    {/* Checkbox */}
                     <div
                       className={`mt-0.5 w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 transition-colors ${
                         isSelected
@@ -163,7 +162,6 @@ export function PersonalizationSection() {
             </p>
           </div>
 
-          {/* Right: Video Preview */}
           <div className="lg:sticky lg:top-24">
             <div className="bg-bg-tertiary rounded-2xl border border-white/[0.06] overflow-hidden">
               <div className="p-4 border-b border-white/[0.06]">
