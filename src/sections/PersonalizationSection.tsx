@@ -8,7 +8,9 @@ gsap.registerPlugin(ScrollTrigger)
 type ComparisonType = {
   id: string
   label: string
+  headline: string
   description: string
+  benefit: string
   leftVideo: string
   rightVideo: string
 }
@@ -16,29 +18,37 @@ type ComparisonType = {
 const comparisons: ComparisonType[] = [
   {
     id: 'position',
-    label: 'Confronto posizioni',
-    description: "Vedi come cambia il flusso e la pressione tra due posizioni del corpo: gomiti alti vs bassi, schiena curva vs dritta.",
+    label: 'Posizione sul sellino',
+    headline: 'Trova i watt nascosti nella tua postura',
+    description: 'Una differenza di 2 cm nell'altezza dei gomiti può valere 15 watt. Lo stesso vale per l'angolo del torso. Scopri quanto lasci per strada con la tua posizione attuale.',
+    benefit: 'Risparmio stimato: 10-20 watt senza spendere un euro',
     leftVideo: '/videos/cyclist-54kmh.mp4',
     rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
   {
     id: 'helmet',
-    label: 'Confronto caschi',
-    description: "Confronta il flusso d'aria e il campo di pressione tra il tuo casco attuale e uno più aerodinamico.",
+    label: 'Casco',
+    headline: 'Il casco sbagliato ti costa più di un paio di ruote',
+    description: 'Il casco è il primo punto di impatto con l'aria. Tra un modello ventilato e uno aero la differenza è 20-30 watt a 50 km/h. Ti mostriamo esattamente dove l'aria si ferma.',
+    benefit: 'Miglior upgrade per euro speso nel tuo setup',
     leftVideo: '/videos/cyclist-54kmh.mp4',
     rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
   {
     id: 'speed',
-    label: 'Confronto velocità',
-    description: "Confronta 36 km/h vs 54 km/h: come cambia il flusso e la pressione sul tuo corpo alla stessa posizione.",
+    label: 'Velocità',
+    headline: 'A 54 km/h l'aria non è più amica',
+    description: 'La resistenza cresce con il cubo della velocità. Passare da 36 a 54 km/h costa 3.4× più watt. Vediamo insieme dove il tuo corpo diventa un freno a quelle velocità.',
+    benefit: 'Capisci quando conviene spingere e quando risparmiare',
     leftVideo: '/videos/cyclist-54kmh.mp4',
     rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
   {
     id: 'bike',
-    label: 'Confronto bici',
-    description: "Confronta due configurazioni di bici diverse: cronometro vs bici da strada, manubrio integrato vs tradizionale.",
+    label: 'Bici',
+    headline: 'Prima di comprare, confronta in digitale',
+    description: 'Cronometro vs strada, telaio rigido vs aerodinamico, manubrio integrato vs tradizionale. Confrontiamo due configurazioni complete prima che tu investa migliaia di euro.',
+    benefit: 'Risparmia il costo di una bici sbagliata',
     leftVideo: '/videos/cyclist-54kmh.mp4',
     rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
@@ -71,19 +81,23 @@ export function PersonalizationSection() {
       className="py-20 lg:py-32 bg-[#0a0a0a]"
     >
       <div className="max-w-[1200px] mx-auto px-6">
+        {/* Header */}
         <div className="personalization-header text-center mb-12">
           <p className="text-[#06b6d4] text-xs font-medium tracking-[0.25em] uppercase mb-4">
-            PERSONALIZZA IL TUO REPORT
+            IL TUO REPORT SU MISURA
           </p>
           <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight mb-4">
-            Cosa vuoi confrontare?
+            Cosa vuoi scoprire?
           </h2>
           <p className="text-gray-400 max-w-[600px] mx-auto leading-relaxed">
-            Seleziona il tipo di confronto. Il video si aggiorna automaticamente con le due visualizzazioni affiancate.
+            Ogni confronto ti mostra due visualizzazioni affiancate: il flusso d'aria e il campo di pressione. 
+            Scegli cosa vuoi analizzare — i numeri parlano chiaro.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-8 items-start">
+          
+          {/* LEFT: Options */}
           <div className="space-y-3">
             {comparisons.map((comparison) => {
               const isSelected = selected === comparison.id
@@ -110,13 +124,13 @@ export function PersonalizationSection() {
                     </div>
 
                     <div className="flex-1">
-                      <h3 className={`font-medium text-sm mb-1 ${
+                      <h3 className={`font-semibold text-sm mb-1 ${
                         isSelected ? 'text-[#06b6d4]' : 'text-white'
                       }`}>
                         {comparison.label}
                       </h3>
                       <p className="text-gray-400 text-xs leading-relaxed">
-                        {comparison.description}
+                        {comparison.headline}
                       </p>
                     </div>
                   </div>
@@ -125,23 +139,31 @@ export function PersonalizationSection() {
             })}
           </div>
 
+          {/* RIGHT: Dual Video Preview */}
           <div className="lg:sticky lg:top-24">
             <div className="bg-[#1a1a1a] rounded-2xl border border-white/10 overflow-hidden">
-              <div className="p-4 border-b border-white/10 flex items-center justify-between">
-                <p className="text-[#06b6d4] text-xs font-medium tracking-[0.2em] uppercase">
+              
+              {/* Header */}
+              <div className="p-5 border-b border-white/10">
+                <p className="text-[#06b6d4] text-xs font-medium tracking-[0.2em] uppercase mb-2">
                   {activeComparison.label}
                 </p>
-                <p className="text-gray-500 text-xs">
-                  Configurazione A vs B
+                <h3 className="text-white text-xl font-bold mb-2">
+                  {activeComparison.headline}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {activeComparison.description}
                 </p>
               </div>
 
+              {/* Two videos side by side */}
               <div className="grid grid-cols-2 gap-1">
                 <div>
-                  <div className="bg-black/50 px-3 py-2">
+                  <div className="bg-black/50 px-3 py-2 flex items-center justify-between">
                     <p className="text-[10px] text-[#22c55e] uppercase tracking-wider font-medium">
                       Flusso d'aria
                     </p>
+                    <span className="text-[10px] text-gray-500">Config A</span>
                   </div>
                   <VideoReveal
                     src={activeComparison.leftVideo}
@@ -152,10 +174,11 @@ export function PersonalizationSection() {
                 </div>
 
                 <div>
-                  <div className="bg-black/50 px-3 py-2">
+                  <div className="bg-black/50 px-3 py-2 flex items-center justify-between">
                     <p className="text-[10px] text-[#f97316] uppercase tracking-wider font-medium">
-                      Campo di pressione
+                      Pressione
                     </p>
+                    <span className="text-[10px] text-gray-500">Config B</span>
                   </div>
                   <VideoReveal
                     src={activeComparison.rightVideo}
@@ -166,14 +189,21 @@ export function PersonalizationSection() {
                 </div>
               </div>
 
-              <div className="p-4 border-t border-white/10">
-                <p className="text-gray-400 text-xs leading-relaxed">
-                  <span className="text-white font-medium">Sinistra:</span> mappa di velocità — dove l'aria accelera e forma turbolenze.{' '}
-                  <span className="text-white font-medium">Destra:</span> mappa di pressione — dove l'aria colpisce con più forza.
+              {/* Footer */}
+              <div className="p-5 border-t border-white/10 bg-[#06b6d4]/5">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#06b6d4]" />
+                  <p className="text-[#06b6d4] text-xs font-medium uppercase tracking-wider">
+                    Risultato
+                  </p>
+                </div>
+                <p className="text-white text-sm font-medium">
+                  {activeComparison.benefit}
                 </p>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
