@@ -53,10 +53,10 @@ export function IntroSection() {
             L'aria è il tuo vero avversario
           </h2>
           <p className="text-txt-secondary leading-relaxed mb-4">
-            Quando pedali, la resistenza che senti di più non viene dalla fatica dei muscoli né dall'attrito delle ruote: viene dall'aria che devi spostare. Con la simulazione CFD ricreiamo digitalmente il tuo setup — bici, casco, posizione — e calcoliamo esattamente quanto l'aria ti rallenta.
+            Quando pedali, la resistenza che senti di più non viene dalla fatica dei muscoli né dall'attrito delle ruote: viene dall'aria che devi spostare.
           </p>
           <p className="text-txt-secondary leading-relaxed mb-8">
-            In strada ci sono il vento, le buche, la stanchezza, il traffico. Al computer possiamo congelare tutto e studiare solo l'aria. È come avere una galleria del vento virtuale, disponibile 24 ore su 24, a un costo che non ti svuota il portafoglio.
+            In strada ci sono il vento, le buche, la stanchezza, il traffico. Al computer possiamo eliminare tutte queste sorgenti di errore e studiare solo cio che conta. 
           </p>
 
           <div className="space-y-4">
@@ -80,7 +80,7 @@ export function IntroSection() {
             />
           </div>
           <p className="text-txt-tertiary text-xs text-center mt-4 tracking-wide">
-            Esempio di dominio di calcolo per un ciclista in posizione aerodinamica
+            Esempio di dominio di calcolo per un ciclista. I dettagli contano.
           </p>
         </div>
       </div>
