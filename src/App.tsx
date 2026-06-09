@@ -1,20 +1,10 @@
-import { useState } from 'react'
-import { HeroSection } from '@/sections/HeroSection'
-import { ScenariosSection } from '@/sections/ScenariosSection'
-import { PersonalizationSection } from '@/sections/PersonalizationSection'  // ← AGGIUNGI
-import { DataUploader } from '@/components/cfd/DataUploader'
+import { Routes, Route } from 'react-router'
+import Home from './pages/Home'
 
-function App() {
-  const [data, setData] = useState<any>(null)
-
+export default function App() {
   return (
-    <div className="w-screen min-h-screen bg-gray-900 text-white">
-      <HeroSection />
-      <ScenariosSection />
-      <PersonalizationSection />  
-      
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
   )
 }
-
-export default App
