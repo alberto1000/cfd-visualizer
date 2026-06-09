@@ -4,7 +4,7 @@ import { HeroSection } from '@/sections/HeroSection'
 import { IntroSection } from '@/sections/IntroSection'
 import { MethodSection } from '@/sections/MethodSection'
 import { PersonalizationSection } from '@/sections/PersonalizationSection'
-import { ScenariosSection } from '@/sections/ScenariosSection'
+
 import { PressureSection } from '@/sections/PressureSection'
 import { InsightsSection } from '@/sections/InsightsSection'
 import { PartnersSection } from '@/sections/PartnersSection'
@@ -19,7 +19,7 @@ export default function Home() {
         <IntroSection />
         <MethodSection />
         <PersonalizationSection />
-        <ScenariosSection />
+
         <PressureSection />
         <InsightsSection />
         <PartnersSection />
