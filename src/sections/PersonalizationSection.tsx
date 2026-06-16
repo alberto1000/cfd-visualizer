@@ -11,33 +11,33 @@ type ComparisonType = {
   headline: string
   description: string
   benefit: string
-  leftVideo: string
-  rightVideo: string
+  leftConfig: { type: 'video' | 'image'; src: string; alt?: string }
+  rightConfig: { type: 'video' | 'image'; src: string; alt?: string }
 }
 
 const comparisons: ComparisonType[] = [
   {
     id: 'position',
     label: 'Posizione',
-    headline: 'Trova i watt nascosti nella tua postura',
+    headline: 'Aumenta i Watt ottimizzando la posizione',
     description: 'Una differenza di 2 cm nell\'altezza dei gomiti può valere 15 watt. Lo stesso vale per l\'angolo del torso. Scopri quanto lasci per strada con la tua posizione attuale.',
     benefit: 'Risparmio stimato: 10-20 watt senza spendere un euro',
     leftVideo: '/videos/cyclist-54kmh.mp4',
     rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
-  {
+   {
     id: 'helmet',
     label: 'Casco',
-    headline: 'Il casco sbagliato ti costa più di un paio di ruote',
-    description: 'Il casco è il primo punto di impatto con l\'aria. Tra un modello ventilato e uno aero la differenza è 20-30 watt a 50 km/h. Ti mostriamo esattamente dove l\'aria si ferma.',
-    benefit: 'Miglior upgrade per euro speso nel tuo setup',
-    leftVideo: '/videos/cyclist-54kmh.mp4',
-    rightVideo: '/videos/pressure-field_54kmh.mp4',
+    headline: 'Il casco sbagliato ti costa più di quello che credi',
+    description: '...',
+    benefit: '...',
+    leftConfig: { type: 'image', src: '/images/casco_1.png' },
+    rightConfig: { type: 'image', src: '/images/casco_2.png', alt: 'Confronto streamlines caschi' },
   },
   {
     id: 'speed',
     label: 'Velocità',
-    headline: 'A 54 km/h l\'aria non è più amica',
+    headline: 'Cosa cambia e dove hai maggior resistenza a diverse velocità',
     description: 'La resistenza cresce con il cubo della velocità. Passare da 36 a 54 km/h costa 3.4× più watt. Vediamo insieme dove il tuo corpo diventa un freno a quelle velocità.',
     benefit: 'Capisci quando conviene spingere e quando risparmiare',
     leftVideo: '/videos/cyclist-54kmh.mp4',
