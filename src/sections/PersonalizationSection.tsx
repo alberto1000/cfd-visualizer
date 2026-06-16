@@ -9,6 +9,7 @@ type MediaConfig = {
   type: 'video' | 'image'
   src: string
   alt?: string
+  caption?: string
 }
 
 type ComparisonType = {
@@ -28,8 +29,8 @@ const comparisons: ComparisonType[] = [
     headline: 'Aumenta i Watt ottimizzando la posizione',
     description: 'Una differenza di 2 cm nell\'altezza dei gomiti può valere 15 watt. Lo stesso vale per l\'angolo del torso. Scopri quanto lasci per strada con la tua posizione attuale.',
     benefit: 'Risparmio stimato: 10-20 watt senza spendere un euro',
-    leftConfig: { type: 'video', src: '/videos/cyclist-54kmh.mp4', alt: 'Flusso d\'aria posizione attuale' },
-    rightConfig: { type: 'video', src: '/videos/pressure-field_54kmh.mp4', alt: 'Campo di pressione posizione attuale' },
+    leftConfig: { type: 'video', src: '/videos/cyclist-54kmh.mp4', alt: 'Flusso d\'aria posizione attuale', caption: 'Flusso d\'aria — Configurazione A' },
+    rightConfig: { type: 'video', src: '/videos/pressure-field_54kmh.mp4', alt: 'Campo di pressione posizione attuale', caption: 'Campo di pressione — Configurazione B' },
   },
   {
     id: 'helmet',
@@ -37,8 +38,8 @@ const comparisons: ComparisonType[] = [
     headline: 'Il casco sbagliato ti costa più di quello che credi',
     description: 'Il casco è il primo punto di impatto con l\'aria. Tra un modello ventilato e uno aero la differenza è 20-30 watt a 50 km/h. Ti mostriamo esattamente dove l\'aria si ferma.',
     benefit: 'Miglior upgrade per euro speso nel tuo setup',
-    leftConfig: { type: 'image', src: '/images/helmet-comparison-streamlines.png', alt: 'Visualizzazione del flusso intorno al casco' },
-    rightConfig: { type: 'image', src: '/images/helmet-comparison-pressure.png', alt: 'Visualizzazione della pressione sul casco' },
+    leftConfig: { type: 'video', src: '/videos/cyclist-54kmh.mp4', alt: 'Flusso d\'aria casco standard', caption: 'Visualizzazione del flusso intorno al casco' },
+    rightConfig: { type: 'image', src: '/images/helmet-comparison.png', alt: 'Confronto pressione caschi', caption: 'Visualizzazione della pressione sul casco' },
   },
   {
     id: 'speed',
@@ -46,8 +47,8 @@ const comparisons: ComparisonType[] = [
     headline: 'Cosa cambia e dove hai maggior resistenza a diverse velocità',
     description: 'La resistenza cresce con il cubo della velocità. Passare da 36 a 54 km/h costa 3.4× più watt. Vediamo insieme dove il tuo corpo diventa un freno a quelle velocità.',
     benefit: 'Capisci quando conviene spingere e quando risparmiare',
-    leftConfig: { type: 'video', src: '/videos/cyclist-54kmh.mp4', alt: 'Flusso a 36 km/h' },
-    rightConfig: { type: 'video', src: '/videos/pressure-field_54kmh.mp4', alt: 'Pressione a 54 km/h' },
+    leftConfig: { type: 'video', src: '/videos/cyclist-54kmh.mp4', alt: 'Flusso a 36 km/h', caption: 'Flusso d\'aria — 36 km/h' },
+    rightConfig: { type: 'video', src: '/videos/pressure-field_54kmh.mp4', alt: 'Pressione a 54 km/h', caption: 'Campo di pressione — 54 km/h' },
   },
   {
     id: 'bike',
@@ -55,8 +56,8 @@ const comparisons: ComparisonType[] = [
     headline: 'Prima di comprare, confronta in digitale',
     description: 'Cronometro vs strada, telaio rigido vs aerodinamico, manubrio integrato vs tradizionale. Confrontiamo due configurazioni complete prima che tu investa migliaia di euro.',
     benefit: 'Risparmia il costo di una bici sbagliata',
-    leftConfig: { type: 'video', src: '/videos/cyclist-54kmh.mp4', alt: 'Flusso bici da strada' },
-    rightConfig: { type: 'video', src: '/videos/pressure-field_54kmh.mp4', alt: 'Pressione bici cronometro' },
+    leftConfig: { type: 'video', src: '/videos/cyclist-54kmh.mp4', alt: 'Flusso bici da strada', caption: 'Bici da strada — Configurazione A' },
+    rightConfig: { type: 'video', src: '/videos/pressure-field_54kmh.mp4', alt: 'Pressione bici cronometro', caption: 'Bici cronometro — Configurazione B' },
   },
 ]
 
@@ -77,11 +78,11 @@ function ConfigPanel({ config, label }: { config: MediaConfig; label: string }) 
           aspectRatio="16/9"
         />
       ) : (
-        <div className="aspect-video w-full overflow-hidden bg-black">
+        <div className="w-full overflow-hidden bg-black">
           <img 
             src={config.src} 
             alt={config.alt || label}
-            className="w-full h-full object-cover"
+            className="w-full h-auto object-contain"
             loading="lazy"
           />
         </div>
@@ -89,7 +90,7 @@ function ConfigPanel({ config, label }: { config: MediaConfig; label: string }) 
       
       <div className="px-4 py-3 bg-black/30">
         <p className="text-gray-500 text-xs">
-          {config.alt || ''}
+          {config.caption || config.alt || ''}
         </p>
       </div>
     </div>
@@ -190,7 +191,8 @@ export function PersonalizationSection() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* IMMAGINI/VIDEO UNA SOPRA L'ALTRA */}
+          <div className="grid grid-cols-1 gap-4 max-w-[900px] mx-auto">
             <ConfigPanel config={activeComparison.leftConfig} label="Configurazione A" />
             <ConfigPanel config={activeComparison.rightConfig} label="Configurazione B" />
           </div>
