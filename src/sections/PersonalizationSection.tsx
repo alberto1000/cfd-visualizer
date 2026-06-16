@@ -37,8 +37,8 @@ const comparisons: ComparisonType[] = [
     headline: 'Il casco sbagliato ti costa più di quello che credi',
     description: 'Il casco è il primo punto di impatto con l\'aria. Tra un modello ventilato e uno aero la differenza è 20-30 watt a 50 km/h. Ti mostriamo esattamente dove l\'aria si ferma.',
     benefit: 'Miglior upgrade per euro speso nel tuo setup',
-    leftConfig: { type: 'video', src: '/videos/cyclist-54kmh.mp4', alt: 'Flusso d\'aria casco attuale' },
-    rightConfig: { type: 'image', src: '/images/helmet-comparison.png', alt: 'Confronto pressione caschi: casco standard vs aero' },
+    leftConfig: { type: 'image', src: '/images/helmet-comparison-streamlines.png', alt: 'Visualizzazione del flusso intorno al casco' },
+    rightConfig: { type: 'image', src: '/images/helmet-comparison-pressure.png', alt: 'Visualizzazione della pressione sul casco' },
   },
   {
     id: 'speed',
