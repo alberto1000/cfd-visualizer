@@ -5,21 +5,14 @@ import { VideoReveal } from '@/components/VideoReveal'
 
 gsap.registerPlugin(ScrollTrigger)
 
-type MediaConfig = {
-  type: 'video' | 'image'
-  src: string
-  alt?: string
-  caption?: string
-}
-
 type ComparisonType = {
   id: string
   label: string
   headline: string
   description: string
   benefit: string
-  leftConfig: MediaConfig
-  rightConfig: MediaConfig
+  leftVideo: string
+  rightVideo: string
 }
 
 const comparisons: ComparisonType[] = [
@@ -29,8 +22,8 @@ const comparisons: ComparisonType[] = [
     headline: 'Aumenta i Watt ottimizzando la posizione',
     description: 'Una differenza di 2 cm nell\'altezza dei gomiti può valere 15 watt. Lo stesso vale per l\'angolo del torso. Scopri quanto lasci per strada con la tua posizione attuale.',
     benefit: 'Risparmio stimato: 10-20 watt senza spendere un euro',
-    leftConfig: { type: 'video', src: '/videos/cyclist-54kmh.mp4', alt: 'Flusso d\'aria posizione attuale', caption: 'Flusso d\'aria — Configurazione A' },
-    rightConfig: { type: 'video', src: '/videos/pressure-field_54kmh.mp4', alt: 'Campo di pressione posizione attuale', caption: 'Campo di pressione — Configurazione B' },
+    leftVideo: '/videos/cyclist-54kmh.mp4',
+    rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
   {
     id: 'helmet',
@@ -38,8 +31,8 @@ const comparisons: ComparisonType[] = [
     headline: 'Il casco sbagliato ti costa più di quello che credi',
     description: 'Il casco è il primo punto di impatto con l\'aria. Tra un modello ventilato e uno aero la differenza è 20-30 watt a 50 km/h. Ti mostriamo esattamente dove l\'aria si ferma.',
     benefit: 'Miglior upgrade per euro speso nel tuo setup',
-    leftConfig: { type: 'image', src: '/images/helmet-comparison-streamlines.png', alt: 'Velocità ', caption: 'Visualizzazione del flusso intorno al casco' },
-    rightConfig: { type: 'image', src: '/images/helmet-comparison-pressure.png', alt: 'Pressione', caption: 'Visualizzazione della pressione sul casco' },
+    leftVideo: '/videos/flow_dynamics1.mp4',
+    rightVideo: '/videos/flow_dynamics2.mp4',
   },
   {
     id: 'speed',
@@ -47,8 +40,8 @@ const comparisons: ComparisonType[] = [
     headline: 'Cosa cambia e dove hai maggior resistenza a diverse velocità',
     description: 'La resistenza cresce con il cubo della velocità. Passare da 36 a 54 km/h costa 3.4× più watt. Vediamo insieme dove il tuo corpo diventa un freno a quelle velocità.',
     benefit: 'Capisci quando conviene spingere e quando risparmiare',
-    leftConfig: { type: 'video', src: '/videos/cyclist-54kmh.mp4', alt: 'Flusso a 36 km/h', caption: 'Flusso d\'aria — 36 km/h' },
-    rightConfig: { type: 'video', src: '/videos/pressure-field_54kmh.mp4', alt: 'Pressione a 54 km/h', caption: 'Campo di pressione — 54 km/h' },
+    leftVideo: '/videos/cyclist-54kmh.mp4',
+    rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
   {
     id: 'bike',
@@ -56,46 +49,10 @@ const comparisons: ComparisonType[] = [
     headline: 'Prima di comprare, confronta in digitale',
     description: 'Cronometro vs strada, telaio rigido vs aerodinamico, manubrio integrato vs tradizionale. Confrontiamo due configurazioni complete prima che tu investa migliaia di euro.',
     benefit: 'Risparmia il costo di una bici sbagliata',
-    leftConfig: { type: 'video', src: '/videos/cyclist-54kmh.mp4', alt: 'Flusso bici da strada', caption: 'Bici da strada — Configurazione A' },
-    rightConfig: { type: 'video', src: '/videos/pressure-field_54kmh.mp4', alt: 'Pressione bici cronometro', caption: 'Bici cronometro — Configurazione B' },
+    leftVideo: '/videos/cyclist-54kmh.mp4',
+    rightVideo: '/videos/pressure-field_54kmh.mp4',
   },
 ]
-
-function ConfigPanel({ config, label }: { config: MediaConfig; label: string }) {
-  return (
-    <div className="bg-[#1a1a1a] rounded-2xl border border-white/10 overflow-hidden">
-      <div className="bg-black/60 px-4 py-3 border-b border-white/10">
-        <p className="text-xs font-medium uppercase tracking-wider text-gray-400">
-          {label}
-        </p>
-      </div>
-      
-      {config.type === 'video' ? (
-        <VideoReveal
-          src={config.src}
-          ariaLabel={config.alt || label}
-          className="rounded-none border-0"
-          aspectRatio="16/9"
-        />
-      ) : (
-        <div className="w-full overflow-hidden bg-black">
-          <img 
-            src={config.src} 
-            alt={config.alt || label}
-            className="w-full h-auto object-contain"
-            loading="lazy"
-          />
-        </div>
-      )}
-      
-      <div className="px-4 py-3 bg-black/30">
-        <p className="text-gray-500 text-xs">
-          {config.caption || config.alt || ''}
-        </p>
-      </div>
-    </div>
-  )
-}
 
 export function PersonalizationSection() {
   const [selected, setSelected] = useState('position')
@@ -132,7 +89,7 @@ export function PersonalizationSection() {
             Cosa vuoi esplorare?
           </h2>
           <p className="text-gray-400 max-w-[600px] mx-auto leading-relaxed">
-            Due caschi diversi? Due posizioni differenti? l'impatto dei gomiti? questi sono solo alcuni degli esempi che ti proponiamo...sbizzarisciti!
+           Due caschi diversi? Due posizioni differenti? l'impatto dei gomiti? questi sono solo alcuni degli esempi che ti proponiamo...sbizzarisciti!
           </p>
         </div>
 
@@ -191,10 +148,45 @@ export function PersonalizationSection() {
             </div>
           </div>
 
-          {/* IMMAGINI/VIDEO UNA SOPRA L'ALTRA */}
-          <div className="grid grid-cols-1 gap-4 max-w-[900px] mx-auto">
-            <ConfigPanel config={activeComparison.leftConfig} label="Configurazione A" />
-            <ConfigPanel config={activeComparison.rightConfig} label="Configurazione B" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="bg-[#1a1a1a] rounded-2xl border border-white/10 overflow-hidden">
+              <div className="bg-black/60 px-4 py-3 flex items-center justify-between border-b border-white/10">
+                <p className="text-[#22c55e] text-xs font-medium uppercase tracking-wider">
+                  Configurazione A
+                </p>
+              </div>
+              <VideoReveal
+                src={activeComparison.leftVideo}
+                ariaLabel="Flusso d'aria"
+                className="rounded-none border-0"
+                aspectRatio="16/9"
+              />
+              <div className="px-4 py-3 bg-black/30">
+                <p className="text-gray-500 text-xs">
+                  
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-[#1a1a1a] rounded-2xl border border-white/10 overflow-hidden">
+              <div className="bg-black/60 px-4 py-3 flex items-center justify-between border-b border-white/10">
+                <p className="text-[#f97316] text-xs font-medium uppercase tracking-wider">
+                  Configurazione B
+                </p>
+                
+              </div>
+              <VideoReveal
+                src={activeComparison.rightVideo}
+                ariaLabel="Campo di pressione"
+                className="rounded-none border-0"
+                aspectRatio="16/9"
+              />
+              <div className="px-4 py-3 bg-black/30">
+                <p className="text-gray-500 text-xs">
+                  
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
